@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Dawn Launcher</string>
+    <string name="app_version">Dawn Launcher v0.0.1.0 for Android</string>
+    <string name="app_copyright">Copyright© 2002-2017 Dawncraft Studio</string>
+    <string name="navigation_drawer_open">open menu</string>
+    <string name="navigation_drawer_close">close menu</string>
+    <string name="exit">Press back key again to exit.</string>
+    <string name="tab_home">Home</string>
+    <string name="tab_games">Games</string>
+    <string name="tab_friends">Friends</string>
+    <string-array name="menu_items">
+        <item>Downloads</item>
+        <item>Settings</item>
+        <item>Exit</item>
+    </string-array>
+    <!-- Example General settings -->
+    <string name="title_activity_settings">Settings</string>
+    <string name="pref_default_display_name">wc</string>
+    <string-array name="pref_example_list_titles">
+        <item>Never</item>
+        <item>Sometime</item>
+        <item>Alway</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>

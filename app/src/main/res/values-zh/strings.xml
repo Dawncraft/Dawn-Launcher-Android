@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">曙光助手</string>
+    <string name="app_version">曙光助手 0.0.1.0 Android版</string>
+    <string name="app_copyright">版权所有© 2002-2017 曙光工艺工作室</string>
+    <string name="exit">再按一次退出曙光助手</string>
+    <string name="tab_home">主页</string>
+    <string name="tab_games">游戏</string>
+    <string name="tab_friends">好友</string>
+    <string-array name="menu_items">
+        <item>下载管理</item>
+        <item>设置</item>
+        <item>退出</item>
+    </string-array>
+</resources>
