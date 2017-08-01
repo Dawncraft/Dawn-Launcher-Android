@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="io.github.dawncraft.dawnlauncher">
+    package="io.github.dawncraft.launcher">
 
     <!-- 获取系统相机与闪光灯使用权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
@@ -45,15 +45,13 @@
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <!-- 登录界面 -->
         <!-- 设置界面 -->
         <activity
             android:name=".ui.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
     </application>
+
 </manifest>

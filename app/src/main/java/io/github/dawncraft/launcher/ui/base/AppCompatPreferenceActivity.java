@@ -1,4 +1,4 @@
-package io.github.dawncraft.dawnlauncher.ui.base;
+package io.github.dawncraft.launcher.ui.base;
 
 import android.content.res.Configuration;
 import android.os.Bundle;

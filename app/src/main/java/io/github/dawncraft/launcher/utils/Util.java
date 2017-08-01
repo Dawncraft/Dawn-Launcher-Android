@@ -1,4 +1,4 @@
-package io.github.dawncraft.dawnlauncher.utils;
+package io.github.dawncraft.launcher.utils;
 
 import android.content.Context;
 import android.support.annotation.StringRes;

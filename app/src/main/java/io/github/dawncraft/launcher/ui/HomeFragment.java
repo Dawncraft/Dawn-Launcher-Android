@@ -1,19 +1,19 @@
-package io.github.dawncraft.dawnlauncher.ui;
+package io.github.dawncraft.launcher.ui;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 
-import io.github.dawncraft.dawnlauncher.R;
+import io.github.dawncraft.launcher.R;
 
-public class HomeFragment extends Fragment
+public class HomeFragment extends Fragment implements BaseSliderView.OnSliderClickListener
 {
     protected Context mActivity;
     SliderLayout sliderShow;
@@ -24,10 +24,11 @@ public class HomeFragment extends Fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         // Add slider
         sliderShow = (SliderLayout) view.findViewById(R.id.slider);
-//        TextSliderView textSliderView = new TextSliderView(mActivity);
-//        textSliderView.description("示范图片")
-//                .image("http://img3.imgtn.bdimg.com/it/u=1798501903,126021128&fm=23&gp=0.jpg");
-//        sliderShow.addSlider(textSliderView);
+        TextSliderView textSliderView = new TextSliderView(mActivity);
+        textSliderView.description("示范图片")
+                .image("http://img.tuku.cn/file_thumb/201504/m2015041616571244.jpg")
+                .setOnSliderClickListener(this);
+        sliderShow.addSlider(textSliderView);
 
         return view;
     }
@@ -44,5 +45,11 @@ public class HomeFragment extends Fragment
     {
         sliderShow.stopAutoCycle();
         super.onDestroy();
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider)
+    {
+
     }
 }

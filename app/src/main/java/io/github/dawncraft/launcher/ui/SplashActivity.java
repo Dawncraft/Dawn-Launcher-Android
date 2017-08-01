@@ -1,4 +1,4 @@
-package io.github.dawncraft.dawnlauncher.ui;
+package io.github.dawncraft.launcher.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-import io.github.dawncraft.dawnlauncher.R;
+import io.github.dawncraft.launcher.R;
 
 public class SplashActivity extends AppCompatActivity
 {

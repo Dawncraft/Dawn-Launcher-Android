@@ -1,9 +1,11 @@
-package io.github.dawncraft.dawnlauncher.ui;
+package io.github.dawncraft.launcher.ui;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,13 +15,10 @@ import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.design.widget.BottomNavigationView;
 
-import com.ashokvarma.bottomnavigation.BadgeItem;
-import com.ashokvarma.bottomnavigation.BottomNavigationBar;
-import com.ashokvarma.bottomnavigation.BottomNavigationItem;
-
-import io.github.dawncraft.dawnlauncher.R;
-import io.github.dawncraft.dawnlauncher.utils.Util;
+import io.github.dawncraft.launcher.R;
+import io.github.dawncraft.launcher.utils.Util;
 
 public class MainActivity extends AppCompatActivity
 {
@@ -32,29 +31,15 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        this.setContentView(R.layout.activity_main);
+        this.fragmentHome = new HomeFragment();
+        this.fragmentGames = new GamesFragment();
+        this.fragmentFriends = new FriendsFragment();
         // Set tool bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        setSupportActionBar(toolbar);
-        // Set tab bar
-        BadgeItem badgeItem = new BadgeItem();
-        badgeItem.setHideOnSelect(true)
-                .setText("new")
-                .setBackgroundColorResource(R.color.colorAccent)
-                .setBorderWidth(0);
-        BottomNavigationBar bottomBar = (BottomNavigationBar) findViewById(R.id.main_tabbar);
-        TabListener tabListener = new TabListener();
-        bottomBar.setBarBackgroundColor(R.color.white)
-                .addItem(new BottomNavigationItem(R.mipmap.ic_home, R.string.tab_home).setActiveColorResource(R.color.colorLight))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_games, R.string.tab_games).setActiveColorResource(R.color.colorLight).setBadgeItem(badgeItem))
-                .addItem(new BottomNavigationItem(R.mipmap.ic_friends, R.string.tab_friends).setActiveColorResource(R.color.colorLight))
-                .setFirstSelectedPosition(0)
-                .setMode(BottomNavigationBar.MODE_FIXED)
-                .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
-                .setTabSelectedListener(tabListener)
-                .initialise();
+        this.setSupportActionBar(toolbar);
         // Set menu
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -64,14 +49,16 @@ public class MainActivity extends AppCompatActivity
         listview.setAdapter(new ArrayAdapter<>(this, R.layout.list_item_menu,
                 getResources().getStringArray(R.array.menu_items)));
         listview.setOnItemClickListener(new MenuListener());
-        // Set main content
-        tabListener.onTabSelected(0);
+        // Set tab bar(Don't forget to add BadgeItem :)
+        BottomNavigationView bottomNavigation = (BottomNavigationView) findViewById(R.id.main_tabbar);
+        bottomNavigation.setOnNavigationItemSelectedListener(new TabListener());
+        bottomNavigation.setSelectedItemId(R.id.menu_home);
     }
 
     @Override
     public void onBackPressed()
     {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
         if (drawer.isDrawerOpen(GravityCompat.START))
         {
             drawer.closeDrawer(GravityCompat.START);
@@ -96,7 +83,7 @@ public class MainActivity extends AppCompatActivity
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id)
         {
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.main_layout);
             switch(position)
             {
                 default: Util.toast(MainActivity.this, "错误,无此项目:" + position); break;
@@ -108,34 +95,31 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private class TabListener implements BottomNavigationBar.OnTabSelectedListener
+    private class TabListener implements BottomNavigationView.OnNavigationItemSelectedListener
     {
         @Override
-        public void onTabSelected(int position)
+        public boolean onNavigationItemSelected(@NonNull MenuItem item)
         {
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            switch (position)
+            BottomNavigationView bottomNavigation = (BottomNavigationView) findViewById(R.id.main_tabbar);
+            bottomNavigation.getMenu().getItem(0).setChecked(false);
+            bottomNavigation.getMenu().getItem(1).setChecked(false);
+            bottomNavigation.getMenu().getItem(2).setChecked(false);
+            item.setChecked(true);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            switch (item.getItemId())
             {
-                case 0:
-                    if (fragmentHome == null) fragmentHome = new HomeFragment();
-                    transaction.replace(R.id.main_content, fragmentHome);
+                case R.id.menu_home:
+                    transaction.replace(R.id.main_content_layout, fragmentHome);
                     break;
-                case 1:
-                    if (fragmentGames == null) fragmentGames = new GamesFragment();
-                    transaction.replace(R.id.main_content, fragmentGames);
+                case R.id.menu_games:
+                    transaction.replace(R.id.main_content_layout, fragmentGames);
                     break;
-                case 2:
-                    if (fragmentFriends == null) fragmentFriends = new FriendsFragment();
-                    transaction.replace(R.id.main_content, fragmentFriends);
+                case R.id.menu_friends:
+                    transaction.replace(R.id.main_content_layout, fragmentFriends);
                     break;
             }
             transaction.commit();
+            return false;
         }
-
-        @Override
-        public void onTabUnselected(int position) {}
-
-        @Override
-        public void onTabReselected(int position) {}
     }
 }

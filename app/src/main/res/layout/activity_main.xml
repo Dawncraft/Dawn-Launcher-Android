@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -15,7 +15,7 @@
         android:background="@android:color/white">
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/main_layout_toolbar"
+            android:id="@+id/main_toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -29,29 +29,34 @@
         </android.support.design.widget.AppBarLayout>
 
         <LinearLayout
-            android:id="@+id/main_layout_tabbar"
+            android:id="@+id/main_tabbar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="vertical">
 
-            <ImageView
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="?attr/colorPrimary" />
+                android:layout_height="1dp"
+                android:background="?attr/colorPrimary" />
 
-            <com.ashokvarma.bottomnavigation.BottomNavigationBar
+            <!--com.ashokvarma.bottomnavigation.BottomNavigationBar-->
+            <android.support.design.widget.BottomNavigationView
                 android:id="@+id/main_tabbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize" />
+                android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/menu_tab"
+                app:itemIconTint="@drawable/selector_main_bottom"
+                app:itemTextColor="@drawable/selector_main_bottom"
+                app:itemBackground="@color/white" />
         </LinearLayout>
 
         <FrameLayout
-            android:id="@+id/main_content"
+            android:id="@+id/main_content_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/main_layout_toolbar"
-            android:layout_above="@id/main_layout_tabbar" />
+            android:layout_below="@id/main_toolbar_layout"
+            android:layout_above="@id/main_tabbar_layout" />
     </RelativeLayout>
 
     <LinearLayout
@@ -63,10 +68,10 @@
         android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:id="@+id/menu_layout_user"
+            android:id="@+id/menu_user_layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/menu_image_height"
-            android:background="@drawable/menu_image"
+            android:background="@drawable/image_menu"
             android:gravity="bottom"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/vertical_margin"

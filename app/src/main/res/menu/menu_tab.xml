@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_home_24dp"
+        android:title="@string/tab_home"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_games"
+        android:icon="@drawable/ic_games_24dp"
+        android:title="@string/tab_games"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/menu_friends"
+        android:icon="@drawable/ic_friends_24dp"
+        android:title="@string/tab_friends"
+        app:showAsAction="never" />
+</menu>

@@ -1,4 +1,4 @@
-package io.github.dawncraft.dawnlauncher;
+package io.github.dawncraft.launcher;
 
 import android.app.Application;
 

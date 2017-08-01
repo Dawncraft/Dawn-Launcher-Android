@@ -1,4 +1,4 @@
-package io.github.dawncraft.dawnlauncher.ui;
+package io.github.dawncraft.launcher.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 
-import io.github.dawncraft.dawnlauncher.R;
-import io.github.dawncraft.dawnlauncher.ui.base.AppCompatPreferenceActivity;
-
-import java.util.List;
+import io.github.dawncraft.launcher.R;
+import io.github.dawncraft.launcher.ui.base.AppCompatPreferenceActivity;
 
 public class SettingsActivity extends AppCompatPreferenceActivity
 {
